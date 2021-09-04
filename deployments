@@ -1,0 +1,23 @@
+# pseudo code 
+
+define environment dev-machine "a place to code"
+define environment worker "arm or x64 worker machine"
+define environment arm
+define environment linux
+define environment windows
+
+define environment beta
+define environment staging
+define environment production
+
+deploy DevToolsPS git to dev-machine windows
+deploy DevToolsPy git to dev-machine linux
+deploy website-validator binary to worker production
+
+# Execute the validator once a day on one of the production workers
+execute website-validator:
+   - schedule: every day 08:00 o'clock
+   - on: worker production
+   - global-instances: 1
+
+
